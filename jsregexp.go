@@ -32,9 +32,9 @@ func Translate(pattern string) (goPattern string) {
 	}
 
 	// Rebuild pattern without the flags
-	pattern = strings.Join(split[:len(split)-1], "")
+	pattern = strings.Join(split[:len(split)-1], "/")
 
-	goPattern = transformRegExp(pattern)
+	goPattern = transformRegExp(pattern[1:len(pattern)])
 	if len(re2flags) > 0 {
 		goPattern = fmt.Sprintf("(?%s:%s)", re2flags, goPattern)
 	}
